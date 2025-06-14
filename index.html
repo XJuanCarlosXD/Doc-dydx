@@ -1,343 +1,490 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>dYdX v4 Trading Bot Documentation</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        'dark-blue': '#1a1b26',
-                        'sidebar': '#16171d',
-                        'highlight': '#2563eb'
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "dark-blue": "#1a1b26",
+              sidebar: "#16171d",
+              highlight: "#2563eb",
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-dark-blue text-gray-200 min-h-screen">
+  </head>
+  <body class="bg-dark-blue text-gray-200 min-h-screen">
     <!-- Mobile Menu Button -->
-    <div class="lg:hidden fixed top-0 left-0 w-full bg-sidebar z-50 p-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold text-white flex items-center gap-2">
-            <i class="fas fa-robot"></i>
-            dYdX v4 Bot Docs
-        </h1>
-        <button id="menuButton" class="text-white text-2xl">
-            <i class="fas fa-bars"></i>
-        </button>
+    <div
+      class="lg:hidden fixed top-0 left-0 w-full bg-sidebar z-50 p-4 flex justify-between items-center"
+    >
+      <h1 class="text-xl font-bold text-white flex items-center gap-2">
+        <i class="fas fa-robot"></i>
+        Botfleet Docs
+      </h1>
+      <button id="menuButton" class="text-white text-2xl">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
 
     <!-- Sidebar -->
-    <aside id="sidebar" class="w-64 bg-sidebar fixed h-full overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out z-40">
-        <div class="p-4 mt-16 lg:mt-0">
-            <h1 class="text-xl font-bold mb-8 text-white flex items-center gap-2 lg:block hidden">
-                <i class="fas fa-robot"></i>
-                dYdX v4 Bot Docs
-            </h1>
-            <nav>
-                <ul class="space-y-2">
-                    <li><a href="#introduction" class="block py-2 px-4 hover:bg-gray-800 rounded">Introduction</a></li>
-                    <li><a href="#getting-started" class="block py-2 px-4 hover:bg-gray-800 rounded">Getting Started</a></li>
-                    <li><a href="#basic-operations" class="block py-2 px-4 hover:bg-gray-800 rounded">Basic Operations</a></li>
-                    <li><a href="#trading-operations" class="block py-2 px-4 hover:bg-gray-800 rounded">Trading Operations</a></li>
-                    <li><a href="#advanced-features" class="block py-2 px-4 hover:bg-gray-800 rounded">Advanced Features</a></li>
-                    <li><a href="#best-practices" class="block py-2 px-4 hover:bg-gray-800 rounded">Best Practices</a></li>
-                    <li><a href="#troubleshooting" class="block py-2 px-4 hover:bg-gray-800 rounded">Troubleshooting</a></li>
-                    <li><a href="#security" class="block py-2 px-4 hover:bg-gray-800 rounded">Security</a></li>
-                </ul>
-            </nav>
-        </div>
+    <aside
+      id="sidebar"
+      class="w-64 bg-sidebar fixed h-full overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out z-40"
+    >
+      <div class="p-4 mt-16 lg:mt-0">
+        <h1
+          class="text-xl font-bold mb-8 text-white flex items-center gap-2 lg:block hidden"
+        >
+          <i class="fas fa-robot"></i>
+          dYdX v4 Bot Docs
+        </h1>
+        <nav>
+          <ul class="space-y-2">
+            <li>
+              <a
+                href="#introduction"
+                class="block py-2 px-4 hover:bg-gray-800 rounded"
+                >Introduction</a
+              >
+            </li>
+            <li>
+              <a
+                href="#getting-started"
+                class="block py-2 px-4 hover:bg-gray-800 rounded"
+                >Getting Started</a
+              >
+            </li>
+            <li>
+              <a
+                href="#basic-operations"
+                class="block py-2 px-4 hover:bg-gray-800 rounded"
+                >Basic Operations</a
+              >
+            </li>
+            <li>
+              <a
+                href="#trading-operations"
+                class="block py-2 px-4 hover:bg-gray-800 rounded"
+                >Trading Operations</a
+              >
+            </li>
+            <li>
+              <a
+                href="#advanced-features"
+                class="block py-2 px-4 hover:bg-gray-800 rounded"
+                >Advanced Features</a
+              >
+            </li>
+            <li>
+              <a
+                href="#best-practices"
+                class="block py-2 px-4 hover:bg-gray-800 rounded"
+                >Best Practices</a
+              >
+            </li>
+            <li>
+              <a
+                href="#troubleshooting"
+                class="block py-2 px-4 hover:bg-gray-800 rounded"
+                >Troubleshooting</a
+              >
+            </li>
+            <li>
+              <a
+                href="#security"
+                class="block py-2 px-4 hover:bg-gray-800 rounded"
+                >Security</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
     </aside>
 
     <!-- Main content -->
     <main class="lg:ml-64 p-4 lg:p-8 w-full mt-16 lg:mt-0">
-        <div class="max-w-4xl mx-auto">
-            <section id="introduction" class="mb-12">
-                <h2 class="text-3xl font-bold mb-6 text-white">Introduction</h2>
-                <div class="prose prose-invert">
-                    <p class="text-gray-300">
-                        The dYdX v4 Telegram Trading Bot allows you to trade directly on the dYdX v4 platform through Telegram. 
-                        This guide will walk you through setting up your account and performing basic trading operations.
-                    </p>
+      <div class="max-w-4xl mx-auto">
+        <section id="introduction" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6 text-white">Introduction</h2>
+          <div class="prose prose-invert">
+            <p class="text-gray-300">
+              The dYdX v4 Telegram Trading Bot allows you to trade directly on
+              the dYdX v4 platform through Telegram. This guide will walk you
+              through setting up your account and performing basic trading
+              operations.
+            </p>
+          </div>
+        </section>
+
+        <section id="getting-started" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6 text-white">Getting Started</h2>
+          <div class="bg-gray-800 rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-semibold mb-4 text-white">
+              Setting Up Your Wallet
+            </h3>
+            <ol class="list-decimal list-inside space-y-3 text-gray-300">
+              <li>
+                Start the bot with the
+                <code class="bg-gray-700 px-2 py-1 rounded">/start</code>
+                command
+              </li>
+              <li>
+                Choose one of the options:
+                <ul class="list-disc list-inside ml-6 mt-2">
+                  <li class="flex items-center gap-2">
+                    <span>🔑</span> <strong>Create new wallet</strong>:
+                    Generates a new address for use with dYdX
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span>📥</span> <strong>Import existing wallet</strong>: Use
+                    your existing dYdX secret phrase
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+
+          <div class="bg-gray-800 rounded-lg p-6">
+            <h3 class="text-xl font-semibold mb-4 text-white">
+              Main Dashboard
+            </h3>
+            <ul class="list-disc list-inside space-y-2 text-gray-300">
+              <li>Available USDC balance</li>
+              <li>Current leverage setting</li>
+              <li>Open positions (if any)</li>
+              <li>Pending orders (if any)</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="basic-operations" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6 text-white">Basic Operations</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-gray-800 rounded-lg p-4 lg:p-6">
+              <h3 class="text-xl font-semibold mb-4 text-white">
+                Portfolio Management
+              </h3>
+              <div class="flex items-start gap-2 text-gray-300">
+                <span>💼</span>
+                <div>
+                  <p class="font-medium">Click the Portfolio button to view:</p>
+                  <ul class="list-disc list-inside ml-4 mt-2">
+                    <li>USDC balance details</li>
+                    <li>Open positions with profit/loss metrics</li>
+                    <li>Pending orders overview</li>
+                  </ul>
                 </div>
-            </section>
+              </div>
+            </div>
 
-            <section id="getting-started" class="mb-12">
-                <h2 class="text-3xl font-bold mb-6 text-white">Getting Started</h2>
-                <div class="bg-gray-800 rounded-lg p-6 mb-6">
-                    <h3 class="text-xl font-semibold mb-4 text-white">Setting Up Your Wallet</h3>
-                    <ol class="list-decimal list-inside space-y-3 text-gray-300">
-                        <li>Start the bot with the <code class="bg-gray-700 px-2 py-1 rounded">/start</code> command</li>
-                        <li>Choose one of the options:
-                            <ul class="list-disc list-inside ml-6 mt-2">
-                                <li class="flex items-center gap-2">
-                                    <span>🔑</span> <strong>Create new wallet</strong>: Generates a new address for use with dYdX
-                                </li>
-                                <li class="flex items-center gap-2">
-                                    <span>📥</span> <strong>Import existing wallet</strong>: Use your existing dYdX secret phrase
-                                </li>
-                            </ul>
-                        </li>
-                    </ol>
+            <div class="bg-gray-800 rounded-lg p-4 lg:p-6">
+              <h3 class="text-xl font-semibold mb-4 text-white">
+                Opening Positions
+              </h3>
+              <ol class="list-decimal list-inside space-y-3 text-gray-300">
+                <li>
+                  Select 📈 <strong>Long</strong> for bullish positions or 📉
+                  <strong>Short</strong> for bearish positions
+                </li>
+                <li>Choose your desired market (BTC-USD, ETH-USD, etc.)</li>
+                <li>Set position size and confirm the operation</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <section id="trading-operations" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6 text-white">Trading Operations</h2>
+
+          <!-- Market Orders -->
+          <div class="bg-gray-800 rounded-lg p-4 lg:p-6 mb-4 lg:mb-6">
+            <h3 class="text-xl font-semibold mb-4 text-white">Market Orders</h3>
+            <div class="space-y-4 text-gray-300">
+              <p class="mb-3">
+                Execute trades immediately at the best available price:
+              </p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="border border-gray-700 rounded-lg p-3 lg:p-4">
+                  <h4 class="font-semibold text-white mb-2">
+                    Long Market Order
+                  </h4>
+                  <ol class="list-decimal list-inside space-y-2">
+                    <li>Click 📈 <strong>Long</strong></li>
+                    <li>
+                      Select
+                      <code class="bg-gray-700 px-2 py-1 rounded">Market</code>
+                    </li>
+                    <li>Enter position size in USDC</li>
+                    <li>Confirm the trade</li>
+                  </ol>
                 </div>
-
-                <div class="bg-gray-800 rounded-lg p-6">
-                    <h3 class="text-xl font-semibold mb-4 text-white">Main Dashboard</h3>
-                    <ul class="list-disc list-inside space-y-2 text-gray-300">
-                        <li>Available USDC balance</li>
-                        <li>Current leverage setting</li>
-                        <li>Open positions (if any)</li>
-                        <li>Pending orders (if any)</li>
-                    </ul>
+                <div class="border border-gray-700 rounded-lg p-3 lg:p-4">
+                  <h4 class="font-semibold text-white mb-2">
+                    Short Market Order
+                  </h4>
+                  <ol class="list-decimal list-inside space-y-2">
+                    <li>Click 📉 <strong>Short</strong></li>
+                    <li>
+                      Select
+                      <code class="bg-gray-700 px-2 py-1 rounded">Market</code>
+                    </li>
+                    <li>Enter position size in USDC</li>
+                    <li>Confirm the trade</li>
+                  </ol>
                 </div>
-            </section>
+              </div>
+            </div>
+          </div>
 
-            <section id="basic-operations" class="mb-12">
-                <h2 class="text-3xl font-bold mb-6 text-white">Basic Operations</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-gray-800 rounded-lg p-4 lg:p-6">
-                        <h3 class="text-xl font-semibold mb-4 text-white">Portfolio Management</h3>
-                        <div class="flex items-start gap-2 text-gray-300">
-                            <span>💼</span>
-                            <div>
-                                <p class="font-medium">Click the Portfolio button to view:</p>
-                                <ul class="list-disc list-inside ml-4 mt-2">
-                                    <li>USDC balance details</li>
-                                    <li>Open positions with profit/loss metrics</li>
-                                    <li>Pending orders overview</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-800 rounded-lg p-4 lg:p-6">
-                        <h3 class="text-xl font-semibold mb-4 text-white">Opening Positions</h3>
-                        <ol class="list-decimal list-inside space-y-3 text-gray-300">
-                            <li>Select 📈 <strong>Long</strong> for bullish positions or 📉 <strong>Short</strong> for bearish positions</li>
-                            <li>Choose your desired market (BTC-USD, ETH-USD, etc.)</li>
-                            <li>Set position size and confirm the operation</li>
-                        </ol>
-                    </div>
+          <!-- Limit Orders -->
+          <div class="bg-gray-800 rounded-lg p-4 lg:p-6 mb-4 lg:mb-6">
+            <h3 class="text-xl font-semibold mb-4 text-white">Limit Orders</h3>
+            <div class="space-y-4 text-gray-300">
+              <p class="mb-3">Place orders at specific price levels:</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="border border-gray-700 rounded-lg p-3 lg:p-4">
+                  <h4 class="font-semibold text-white mb-2">
+                    Long Limit Order
+                  </h4>
+                  <ol class="list-decimal list-inside space-y-2">
+                    <li>Click 📈 <strong>Long</strong></li>
+                    <li>
+                      Select
+                      <code class="bg-gray-700 px-2 py-1 rounded">Limit</code>
+                    </li>
+                    <li>Enter desired entry price</li>
+                    <li>Enter position size in USDC</li>
+                    <li>Confirm the order</li>
+                  </ol>
                 </div>
-            </section>
-
-            <section id="trading-operations" class="mb-12">
-                <h2 class="text-3xl font-bold mb-6 text-white">Trading Operations</h2>
-                
-                <!-- Market Orders -->
-                <div class="bg-gray-800 rounded-lg p-4 lg:p-6 mb-4 lg:mb-6">
-                    <h3 class="text-xl font-semibold mb-4 text-white">Market Orders</h3>
-                    <div class="space-y-4 text-gray-300">
-                        <p class="mb-3">Execute trades immediately at the best available price:</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="border border-gray-700 rounded-lg p-3 lg:p-4">
-                                <h4 class="font-semibold text-white mb-2">Long Market Order</h4>
-                                <ol class="list-decimal list-inside space-y-2">
-                                    <li>Click 📈 <strong>Long</strong></li>
-                                    <li>Select <code class="bg-gray-700 px-2 py-1 rounded">Market</code></li>
-                                    <li>Enter position size in USDC</li>
-                                    <li>Confirm the trade</li>
-                                </ol>
-                            </div>
-                            <div class="border border-gray-700 rounded-lg p-3 lg:p-4">
-                                <h4 class="font-semibold text-white mb-2">Short Market Order</h4>
-                                <ol class="list-decimal list-inside space-y-2">
-                                    <li>Click 📉 <strong>Short</strong></li>
-                                    <li>Select <code class="bg-gray-700 px-2 py-1 rounded">Market</code></li>
-                                    <li>Enter position size in USDC</li>
-                                    <li>Confirm the trade</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
+                <div class="border border-gray-700 rounded-lg p-3 lg:p-4">
+                  <h4 class="font-semibold text-white mb-2">
+                    Short Limit Order
+                  </h4>
+                  <ol class="list-decimal list-inside space-y-2">
+                    <li>Click 📉 <strong>Short</strong></li>
+                    <li>
+                      Select
+                      <code class="bg-gray-700 px-2 py-1 rounded">Limit</code>
+                    </li>
+                    <li>Enter desired entry price</li>
+                    <li>Enter position size in USDC</li>
+                    <li>Confirm the order</li>
+                  </ol>
                 </div>
+              </div>
+            </div>
+          </div>
 
-                <!-- Limit Orders -->
-                <div class="bg-gray-800 rounded-lg p-4 lg:p-6 mb-4 lg:mb-6">
-                    <h3 class="text-xl font-semibold mb-4 text-white">Limit Orders</h3>
-                    <div class="space-y-4 text-gray-300">
-                        <p class="mb-3">Place orders at specific price levels:</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="border border-gray-700 rounded-lg p-3 lg:p-4">
-                                <h4 class="font-semibold text-white mb-2">Long Limit Order</h4>
-                                <ol class="list-decimal list-inside space-y-2">
-                                    <li>Click 📈 <strong>Long</strong></li>
-                                    <li>Select <code class="bg-gray-700 px-2 py-1 rounded">Limit</code></li>
-                                    <li>Enter desired entry price</li>
-                                    <li>Enter position size in USDC</li>
-                                    <li>Confirm the order</li>
-                                </ol>
-                            </div>
-                            <div class="border border-gray-700 rounded-lg p-3 lg:p-4">
-                                <h4 class="font-semibold text-white mb-2">Short Limit Order</h4>
-                                <ol class="list-decimal list-inside space-y-2">
-                                    <li>Click 📉 <strong>Short</strong></li>
-                                    <li>Select <code class="bg-gray-700 px-2 py-1 rounded">Limit</code></li>
-                                    <li>Enter desired entry price</li>
-                                    <li>Enter position size in USDC</li>
-                                    <li>Confirm the order</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
+          <!-- Conditional Orders -->
+          <div class="bg-gray-800 rounded-lg p-4 lg:p-6 mb-4 lg:mb-6">
+            <h3 class="text-xl font-semibold mb-4 text-white">
+              Conditional Orders
+            </h3>
+            <div class="space-y-4 text-gray-300">
+              <p class="mb-3">Set up trigger-based orders:</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="border border-gray-700 rounded-lg p-3 lg:p-4">
+                  <h4 class="font-semibold text-white mb-2">
+                    Stop Loss Orders
+                  </h4>
+                  <ol class="list-decimal list-inside space-y-2">
+                    <li>Select position to protect</li>
+                    <li>
+                      Click
+                      <code class="bg-gray-700 px-2 py-1 rounded"
+                        >Set Stop Loss</code
+                      >
+                    </li>
+                    <li>Enter trigger price</li>
+                    <li>Choose Market or Limit execution</li>
+                    <li>Confirm the order</li>
+                  </ol>
                 </div>
-
-                <!-- Conditional Orders -->
-                <div class="bg-gray-800 rounded-lg p-4 lg:p-6 mb-4 lg:mb-6">
-                    <h3 class="text-xl font-semibold mb-4 text-white">Conditional Orders</h3>
-                    <div class="space-y-4 text-gray-300">
-                        <p class="mb-3">Set up trigger-based orders:</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="border border-gray-700 rounded-lg p-3 lg:p-4">
-                                <h4 class="font-semibold text-white mb-2">Stop Loss Orders</h4>
-                                <ol class="list-decimal list-inside space-y-2">
-                                    <li>Select position to protect</li>
-                                    <li>Click <code class="bg-gray-700 px-2 py-1 rounded">Set Stop Loss</code></li>
-                                    <li>Enter trigger price</li>
-                                    <li>Choose Market or Limit execution</li>
-                                    <li>Confirm the order</li>
-                                </ol>
-                            </div>
-                            <div class="border border-gray-700 rounded-lg p-3 lg:p-4">
-                                <h4 class="font-semibold text-white mb-2">Take Profit Orders</h4>
-                                <ol class="list-decimal list-inside space-y-2">
-                                    <li>Select position to take profit</li>
-                                    <li>Click <code class="bg-gray-700 px-2 py-1 rounded">Set Take Profit</code></li>
-                                    <li>Enter target price</li>
-                                    <li>Choose Market or Limit execution</li>
-                                    <li>Confirm the order</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
+                <div class="border border-gray-700 rounded-lg p-3 lg:p-4">
+                  <h4 class="font-semibold text-white mb-2">
+                    Take Profit Orders
+                  </h4>
+                  <ol class="list-decimal list-inside space-y-2">
+                    <li>Select position to take profit</li>
+                    <li>
+                      Click
+                      <code class="bg-gray-700 px-2 py-1 rounded"
+                        >Set Take Profit</code
+                      >
+                    </li>
+                    <li>Enter target price</li>
+                    <li>Choose Market or Limit execution</li>
+                    <li>Confirm the order</li>
+                  </ol>
                 </div>
+              </div>
+            </div>
+          </div>
 
-                <!-- Order Management -->
-                <div class="bg-gray-800 rounded-lg p-4 lg:p-6">
-                    <h3 class="text-xl font-semibold mb-4 text-white">Order Management</h3>
-                    <div class="space-y-4 text-gray-300">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="border border-gray-700 rounded-lg p-3 lg:p-4">
-                                <h4 class="font-semibold text-white mb-2">Modify Orders</h4>
-                                <ol class="list-decimal list-inside space-y-2">
-                                    <li>Go to Open Orders section</li>
-                                    <li>Select order to modify</li>
-                                    <li>Choose <code class="bg-gray-700 px-2 py-1 rounded">Edit</code></li>
-                                    <li>Update price or quantity</li>
-                                    <li>Confirm changes</li>
-                                </ol>
-                            </div>
-                            <div class="border border-gray-700 rounded-lg p-3 lg:p-4">
-                                <h4 class="font-semibold text-white mb-2">Cancel Orders</h4>
-                                <ol class="list-decimal list-inside space-y-2">
-                                    <li>Go to Open Orders section</li>
-                                    <li>Select order to cancel</li>
-                                    <li>Click <code class="bg-gray-700 px-2 py-1 rounded">Cancel</code></li>
-                                    <li>Confirm cancellation</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
+          <!-- Order Management -->
+          <div class="bg-gray-800 rounded-lg p-4 lg:p-6">
+            <h3 class="text-xl font-semibold mb-4 text-white">
+              Order Management
+            </h3>
+            <div class="space-y-4 text-gray-300">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="border border-gray-700 rounded-lg p-3 lg:p-4">
+                  <h4 class="font-semibold text-white mb-2">Modify Orders</h4>
+                  <ol class="list-decimal list-inside space-y-2">
+                    <li>Go to Open Orders section</li>
+                    <li>Select order to modify</li>
+                    <li>
+                      Choose
+                      <code class="bg-gray-700 px-2 py-1 rounded">Edit</code>
+                    </li>
+                    <li>Update price or quantity</li>
+                    <li>Confirm changes</li>
+                  </ol>
                 </div>
-            </section>
-
-            <section id="advanced-features" class="mb-12">
-                <h2 class="text-3xl font-bold mb-6 text-white">Advanced Features</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-gray-800 rounded-lg p-4 lg:p-6">
-                        <h3 class="text-xl font-semibold mb-4 text-white">Leverage Adjustment</h3>
-                        <div class="text-gray-300">
-                            <p class="mb-3">Click the 🎯 <strong>Leverage</strong> button and select your desired level:</p>
-                            <div class="flex gap-2 flex-wrap">
-                                <span class="px-3 py-1 bg-gray-700 rounded">1x</span>
-                                <span class="px-3 py-1 bg-gray-700 rounded">2x</span>
-                                <span class="px-3 py-1 bg-gray-700 rounded">5x</span>
-                                <span class="px-3 py-1 bg-gray-700 rounded">10x</span>
-                                <span class="px-3 py-1 bg-gray-700 rounded">20x</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-800 rounded-lg p-4 lg:p-6">
-                        <h3 class="text-xl font-semibold mb-4 text-white">Deposits and Withdrawals</h3>
-                        <ul class="space-y-3 text-gray-300">
-                            <li class="flex items-center gap-2">
-                                <span>💱</span> <strong>Deposit</strong>: Transfer USDC from main account to subaccount
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span>💸</span> <strong>Withdraw</strong>: Move USDC from subaccount back to main account
-                            </li>
-                        </ul>
-                    </div>
+                <div class="border border-gray-700 rounded-lg p-3 lg:p-4">
+                  <h4 class="font-semibold text-white mb-2">Cancel Orders</h4>
+                  <ol class="list-decimal list-inside space-y-2">
+                    <li>Go to Open Orders section</li>
+                    <li>Select order to cancel</li>
+                    <li>
+                      Click
+                      <code class="bg-gray-700 px-2 py-1 rounded">Cancel</code>
+                    </li>
+                    <li>Confirm cancellation</li>
+                  </ol>
                 </div>
-            </section>
+              </div>
+            </div>
+          </div>
+        </section>
 
-            <section id="best-practices" class="mb-12">
-                <h2 class="text-3xl font-bold mb-6 text-white">Best Practices</h2>
-                <div class="bg-gray-800 rounded-lg p-6">
-                    <ul class="list-disc list-inside space-y-3 text-gray-300">
-                        <li>Always keep your secret phrase in a secure location</li>
-                        <li>Regularly monitor your positions to manage risk exposure</li>
-                        <li>Set leverage according to your trading strategy and risk tolerance</li>
-                        <li>Consider using stop-loss orders for risk management</li>
-                    </ul>
+        <section id="advanced-features" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6 text-white">Advanced Features</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-gray-800 rounded-lg p-4 lg:p-6">
+              <h3 class="text-xl font-semibold mb-4 text-white">
+                Leverage Adjustment
+              </h3>
+              <div class="text-gray-300">
+                <p class="mb-3">
+                  Click the 🎯 <strong>Leverage</strong> button and select your
+                  desired level:
+                </p>
+                <div class="flex gap-2 flex-wrap">
+                  <span class="px-3 py-1 bg-gray-700 rounded">1x</span>
+                  <span class="px-3 py-1 bg-gray-700 rounded">2x</span>
+                  <span class="px-3 py-1 bg-gray-700 rounded">5x</span>
+                  <span class="px-3 py-1 bg-gray-700 rounded">10x</span>
+                  <span class="px-3 py-1 bg-gray-700 rounded">20x</span>
                 </div>
-            </section>
+              </div>
+            </div>
 
-            <section id="troubleshooting" class="mb-12">
-                <h2 class="text-3xl font-bold mb-6 text-white">Troubleshooting</h2>
-                <div class="bg-gray-800 rounded-lg p-6">
-                    <p class="text-gray-300 mb-4">If you encounter any issues:</p>
-                    <ul class="list-disc list-inside space-y-3 text-gray-300">
-                        <li>Ensure your USDC balance is sufficient for your trades</li>
-                        <li>Check network connectivity if operations seem delayed</li>
-                        <li>For persistent problems, contact support through the Help button</li>
-                    </ul>
-                </div>
-            </section>
+            <div class="bg-gray-800 rounded-lg p-4 lg:p-6">
+              <h3 class="text-xl font-semibold mb-4 text-white">
+                Deposits and Withdrawals
+              </h3>
+              <ul class="space-y-3 text-gray-300">
+                <li class="flex items-center gap-2">
+                  <span>💱</span> <strong>Deposit</strong>: Transfer USDC from
+                  main account to subaccount
+                </li>
+                <li class="flex items-center gap-2">
+                  <span>💸</span> <strong>Withdraw</strong>: Move USDC from
+                  subaccount back to main account
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
 
-            <section id="security" class="mb-12">
-                <h2 class="text-3xl font-bold mb-6 text-white">Security Recommendations</h2>
-                <div class="bg-gray-800 rounded-lg p-6">
-                    <ul class="list-disc list-inside space-y-3 text-gray-300">
-                        <li>Never share your secret phrase with anyone</li>
-                        <li>Periodically review your account activity</li>
-                        <li>Use secure networks when accessing the bot</li>
-                        <li>Enable additional security features when available</li>
-                    </ul>
-                </div>
-            </section>
-        </div>
+        <section id="best-practices" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6 text-white">Best Practices</h2>
+          <div class="bg-gray-800 rounded-lg p-6">
+            <ul class="list-disc list-inside space-y-3 text-gray-300">
+              <li>Always keep your secret phrase in a secure location</li>
+              <li>Regularly monitor your positions to manage risk exposure</li>
+              <li>
+                Set leverage according to your trading strategy and risk
+                tolerance
+              </li>
+              <li>Consider using stop-loss orders for risk management</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="troubleshooting" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6 text-white">Troubleshooting</h2>
+          <div class="bg-gray-800 rounded-lg p-6">
+            <p class="text-gray-300 mb-4">If you encounter any issues:</p>
+            <ul class="list-disc list-inside space-y-3 text-gray-300">
+              <li>Ensure your USDC balance is sufficient for your trades</li>
+              <li>Check network connectivity if operations seem delayed</li>
+              <li>
+                For persistent problems, contact support through the Help button
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="security" class="mb-12">
+          <h2 class="text-3xl font-bold mb-6 text-white">
+            Security Recommendations
+          </h2>
+          <div class="bg-gray-800 rounded-lg p-6">
+            <ul class="list-disc list-inside space-y-3 text-gray-300">
+              <li>Never share your secret phrase with anyone</li>
+              <li>Periodically review your account activity</li>
+              <li>Use secure networks when accessing the bot</li>
+              <li>Enable additional security features when available</li>
+            </ul>
+          </div>
+        </section>
+      </div>
     </main>
 
     <!-- Mobile menu overlay -->
-    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-30" onclick="toggleMenu()"></div>
+    <div
+      id="overlay"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden z-30"
+      onclick="toggleMenu()"
+    ></div>
 
     <script>
-        function toggleMenu() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
-            
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('hidden');
-        }
+      function toggleMenu() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
 
-        document.getElementById('menuButton').addEventListener('click', toggleMenu);
+        sidebar.classList.toggle("-translate-x-full");
+        overlay.classList.toggle("hidden");
+      }
 
-        // Cerrar menú al hacer clic en un enlace (en móvil)
-        document.querySelectorAll('#sidebar a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth < 1024) { // 1024px es el breakpoint 'lg' en Tailwind
-                    toggleMenu();
-                }
-            });
+      document
+        .getElementById("menuButton")
+        .addEventListener("click", toggleMenu);
+
+      // Cerrar menú al hacer clic en un enlace (en móvil)
+      document.querySelectorAll("#sidebar a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth < 1024) {
+            // 1024px es el breakpoint 'lg' en Tailwind
+            toggleMenu();
+          }
         });
+      });
     </script>
-</body>
-</html> 
+  </body>
+</html>
