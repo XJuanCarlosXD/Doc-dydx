@@ -334,6 +334,62 @@
             </div>
           </div>
 
+          <!-- Command-based Orders -->
+          <div class="bg-gray-800 rounded-lg p-4 lg:p-6 mb-4 lg:mb-6">
+            <h3 class="text-xl font-semibold mb-4 text-white">
+              Command-based Orders
+            </h3>
+            <div class="space-y-4 text-gray-300">
+              <p class="mb-3">Execute trades directly with text commands:</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="border border-gray-700 rounded-lg p-3 lg:p-4">
+                  <h4 class="font-semibold text-white mb-2">
+                    Long Position Command
+                  </h4>
+                  <div class="space-y-3">
+                    <p>
+                      <code class="bg-gray-700 px-2 py-1 rounded"
+                        >/long &lt;PAIR&gt; &lt;leverage&gt; &lt;size&gt;</code
+                      >
+                    </p>
+                    <p class="text-sm">Example:</p>
+                    <p>
+                      <code class="bg-gray-700 px-2 py-1 rounded"
+                        >/long BTC-USD 5 100</code
+                      >
+                    </p>
+                    <p class="text-sm">
+                      This will create a long position for BTC-USD with 5x
+                      leverage and $100 size
+                    </p>
+                  </div>
+                </div>
+                <div class="border border-gray-700 rounded-lg p-3 lg:p-4">
+                  <h4 class="font-semibold text-white mb-2">
+                    Short Position Command
+                  </h4>
+                  <div class="space-y-3">
+                    <p>
+                      <code class="bg-gray-700 px-2 py-1 rounded"
+                        >/short &lt;PAIR&gt; &lt;leverage&gt; &lt;size&gt;</code
+                      >
+                    </p>
+                    <p class="text-sm">Example:</p>
+                    <p>
+                      <code class="bg-gray-700 px-2 py-1 rounded"
+                        >/short BTC-USD 5 100</code
+                      >
+                    </p>
+                    <p class="text-sm">
+                      This will create a short position for BTC-USD with 5x
+                      leverage and $100 size
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- Order Management -->
           <div class="bg-gray-800 rounded-lg p-4 lg:p-6">
             <h3 class="text-xl font-semibold mb-4 text-white">
